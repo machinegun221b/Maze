@@ -78,7 +78,7 @@ maze[starting_height+1][starting_width] = 'w'
 while walls:
     rand_wall = walls[int(random.random()*len(walls))-1]
 
-    
+    #Left Wall
     if (rand_wall[1] != 0):
         if (maze[rand_wall[0]][rand_wall[1]-1] == 'u' and maze[rand_wall[0]][rand_wall[1]+1] == 'c'):
             s_cells = surroundingCells(rand_wall)
@@ -106,7 +106,8 @@ while walls:
 
             delete_wall(rand_wall)
             continue
-
+    
+    #Upper Wall
     if (rand_wall[0] != 0):
         if (maze[rand_wall[0]-1][rand_wall[1]] == 'u' and maze[rand_wall[0]+1][rand_wall[1]] == 'c'):
             s_cells = surroundingCells(rand_wall)
@@ -135,6 +136,7 @@ while walls:
             delete_wall(rand_wall)
             continue
 
+    #Bottom Wall
     if (rand_wall[0] != height-1):
         if (maze[rand_wall[0]+1][rand_wall[1]] == 'u' and maze[rand_wall[0]-1][rand_wall[1]] == 'c'):
             s_cells = surroundingCells(rand_wall)
@@ -162,16 +164,14 @@ while walls:
             delete_wall(rand_wall)
             continue
 
-    # Check the right wall
+    #Right Wall
     if (rand_wall[1] != width-1):
         if (maze[rand_wall[0]][rand_wall[1]+1] == 'u' and maze[rand_wall[0]][rand_wall[1]-1] == 'c'):
 
             s_cells = surroundingCells(rand_wall)
             if (s_cells < 2):
-                # Denote the new path
                 maze[rand_wall[0]][rand_wall[1]] = 'c'
 
-                # Mark the new walls
                 if (rand_wall[1] != width-1):
                     if (maze[rand_wall[0]][rand_wall[1]+1] != 'c'):
                         maze[rand_wall[0]][rand_wall[1]+1] = 'w'
